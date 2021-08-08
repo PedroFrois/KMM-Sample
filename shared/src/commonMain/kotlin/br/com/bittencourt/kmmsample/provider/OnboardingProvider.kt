@@ -1,5 +1,7 @@
 package br.com.bittencourt.kmmsample.provider
 
+import br.com.bittencourt.kmmsample.model.OnboardingScreen
+
 interface OnboardingProvider {
-    fun isOnboardingSeen(): Boolean
+    suspend fun getScreenData(): OnboardingScreen
 }

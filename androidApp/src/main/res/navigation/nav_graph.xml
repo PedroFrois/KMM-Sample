@@ -16,6 +16,12 @@
     <!--  endregion  -->
 
     <!--  region Onboarding  -->
+    <fragment
+        android:id="@+id/onboardingFragment"
+        android:name="br.com.bittencourt.kmmsample.android.features.onboarding.OnboardingFragment"
+        android:label="OnboardingFragment"
+        tools:layout="@layout/onboarding_fragment"
+        />
     <!--  endregion  -->
 
     <!--  region Home  -->
