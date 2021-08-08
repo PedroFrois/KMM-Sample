@@ -20,6 +20,9 @@ class TransferViewModel(
     private val _screen = MutableLiveData<TransferScreen>()
     val screen: LiveData<TransferScreen> get() = _screen
 
+    private val value: LiveData<Double> = MutableLiveData()
+    private val receiverId: LiveData<String> = MutableLiveData()
+
     init {
         interactor
             .subscribeToFlow()
@@ -29,6 +32,11 @@ class TransferViewModel(
     }
 
     fun transfer() {
-        viewModelScope.launch { interactor.makeTransfer(0.0, "") } // fixme
+        viewModelScope.launch {
+            interactor.makeTransfer(
+                value = value.value ?: 0.0,
+                receiverId = receiverId.value ?: ""
+            )
+        }
     }
 }
