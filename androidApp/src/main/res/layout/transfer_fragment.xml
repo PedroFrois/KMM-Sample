@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="br.com.bittencourt.kmmsample.android.features.transfer.TransferViewModel"
+            />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:title="@{viewModel.screen.screenTitle}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:title="Screen Title"
+            />
+
+
+        <TextView
+            android:id="@+id/receiverLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.screen.receiverFieldLabel}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="CPF do Destinatário:"
+            />
+
+        <EditText
+            android:id="@+id/receiverValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            app:layout_constraintBottom_toBottomOf="@id/receiverLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/transferAmountValue"
+            app:layout_constraintTop_toTopOf="@id/receiverLabel"
+            tools:text="123.456.789-10"
+            />
+
+        <TextView
+            android:id="@+id/transferAmountLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@{viewModel.screen.transferFieldLabel}"
+            app:layout_constraintStart_toStartOf="@+id/receiverLabel"
+            app:layout_constraintTop_toBottomOf="@id/receiverLabel"
+            tools:text="Valor a ser transferido:"
+            />
+
+        <EditText
+            android:id="@+id/transferAmountValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:inputType="numberDecimal"
+            app:layout_constraintBottom_toBottomOf="@+id/transferAmountLabel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/transferAmountLabel"
+            app:layout_constraintTop_toTopOf="@+id/transferAmountLabel"
+            tools:text="R$ 15,00"
+            />
+
+        <Button
+            android:id="@+id/transferButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:minWidth="200dp"
+            android:onClick="@{() -> viewModel.transfer()}"
+            android:text="@{viewModel.screen.transferButton.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/transferAmountValue"
+            tools:text="Button Title"
+            />
+        <!--        fixme-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

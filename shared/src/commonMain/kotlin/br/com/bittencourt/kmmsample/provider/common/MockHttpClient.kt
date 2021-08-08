@@ -1,6 +1,10 @@
 package br.com.bittencourt.kmmsample.provider.common
 
+import br.com.bittencourt.kmmsample.model.BalanceScreen
+import br.com.bittencourt.kmmsample.model.HomeScreen
+import br.com.bittencourt.kmmsample.model.TransferScreen
 import br.com.bittencourt.kmmsample.model.common.BaseScreen
+import br.com.bittencourt.kmmsample.model.common.Button
 import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
@@ -52,13 +56,28 @@ private fun getJsonResponse(url: String): String =
 
 private fun getBffJsonResponse(url: String) = when (EndpointsBFF.from(url)) {
     EndpointsBFF.BALANCE -> {
-        ""
+        BalanceScreen(
+            screenTitle = "Consulta Saldo",
+            balanceLabel = "Saldo",
+            balanceValue = "R$ 4500.97"
+        ).toJson<BalanceScreen>()
     }
     EndpointsBFF.HOME -> {
-        ""
+        HomeScreen(
+            screenTitle = "Home",
+            balanceButtonTitle = "Consultar Saldo",
+            transferButtonTitle = "Fazer Transferência"
+        ).toJson<HomeScreen>()
     }
     EndpointsBFF.TRANSFER -> {
-        ""
+        TransferScreen(
+            screenTitle = "Transferência",
+            receiverFieldLabel = "CPF do Destinatário",
+            receiverFieldValue = "",
+            transferFieldLabel = "Valor a ser transferido:",
+            transferFieldValue = 0.0,
+            transferButton = Button("Transferir")
+        ).toJson<TransferScreen>()
     }
     null -> throw error("Unhandled url: $url")
 }

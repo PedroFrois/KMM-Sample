@@ -3,13 +3,46 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/appActivity"
+    app:startDestination="@id/entrypointFragment"
     >
 
-    <activity
-        android:id="@+id/appActivity"
-        android:name="br.com.bittencourt.kmmsample.android.AppActivity"
-        android:label="AppActivity"
-        tools:layout="@layout/app_activity"
+    <!--  region Entrypoint  -->
+    <fragment
+        android:id="@+id/entrypointFragment"
+        android:name="br.com.bittencourt.kmmsample.android.features.entrypoint.EntrypointFragment"
+        android:label="EntrypointFragment"
+        tools:layout="@layout/entrypoint_fragment"
         />
+    <!--  endregion  -->
+
+    <!--  region Onboarding  -->
+    <!--  endregion  -->
+
+    <!--  region Home  -->
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="br.com.bittencourt.kmmsample.android.features.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home_fragment"
+        />
+    <!--  endregion  -->
+
+    <!--  region Transfer  -->
+    <fragment
+        android:id="@+id/transferFragment"
+        android:name="br.com.bittencourt.kmmsample.android.features.transfer.TransferFragment"
+        android:label="TransferFragment"
+        tools:layout="@layout/transfer_fragment"
+        />
+    <!--  endregion  -->
+
+    <!--  region Balance  -->
+    <fragment
+        android:id="@+id/balanceFragment"
+        android:name="br.com.bittencourt.kmmsample.android.features.balance.BalanceFragment"
+        android:label="BalanceFragment"
+        tools:layout="@layout/balance_fragment"
+        />
+    <!--  endregion  -->
+
 </navigation>
