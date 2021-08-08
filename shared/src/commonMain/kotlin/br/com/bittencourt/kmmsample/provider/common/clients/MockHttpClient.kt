@@ -53,7 +53,7 @@ internal fun mockHttpClient(withLog: Boolean = true): HttpClient {
 
 private fun getJsonResponse(url: String): String =
     when (Endpoints.from(url)) {
-        Endpoints.TRANSFER_MAKE -> "{}"
+        Endpoints.TRANSFER_MAKE -> "Transferencia realizada com sucesso!"
         null -> getBffJsonResponse(url)
     }
 

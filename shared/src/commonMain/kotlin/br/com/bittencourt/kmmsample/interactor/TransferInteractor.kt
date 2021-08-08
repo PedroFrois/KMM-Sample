@@ -33,11 +33,11 @@ class TransferInteractor(
     suspend fun makeTransfer(value: Double, receiverId: String) {
         updateState { it.copy(transferButton = it.transferButton?.copy(status = Status.Loading)) }
         try {
-            provider.makeTransfer(value, receiverId)
+            val result = provider.makeTransfer(value, receiverId)
             updateState {
                 it.copy(
                     transferButton = it.transferButton?.copy(status = Status.Success),
-                    popupMessage = "Transferência realizada com sucesso!"
+                    popupMessage = result
                 )
             }
         } catch (e: Exception) {
