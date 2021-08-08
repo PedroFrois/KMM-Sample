@@ -18,6 +18,8 @@ import br.com.bittencourt.kmmsample.provider.remote.OnboardingProviderRemote
 import br.com.bittencourt.kmmsample.provider.remote.TransferProviderRemote
 import br.com.bittencourt.kmmsample.provider.synthetic.EntrypointProviderSynthetic
 import br.com.bittencourt.kmmsample.provider.synthetic.ErrorProviderSynthetic
+import com.russhwolf.settings.AndroidSettings
+import com.russhwolf.settings.Settings
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -35,6 +37,14 @@ class App : Application() {
 
     private val commonModule = module {
         single<DispatcherProvider> { DefaultDispatcherProvider() }
+        single<Settings> {
+            AndroidSettings(
+                applicationContext.getSharedPreferences(
+                    "kmm_bittencourt_android_pref",
+                    MODE_PRIVATE
+                )
+            )
+        }
     }
 
     private val providersModule = module {
@@ -43,7 +53,11 @@ class App : Application() {
         factory<ErrorProvider> { ErrorProviderSynthetic() }
         factory<HomeProvider> { HomeProviderRemote() }
         factory<OnboardingProvider> { OnboardingProviderRemote() }
-        factory<OnboardingVisualizationProvider> { OnboardingVisualizationProviderLocal() }
+        factory<OnboardingVisualizationProvider> {
+            OnboardingVisualizationProviderLocal(
+                multiplatformSettings = get(),
+            )
+        }
         factory<TransferProvider> { TransferProviderRemote() }
     }
 
@@ -113,7 +127,8 @@ class App : Application() {
             OnboardingInteractor(
                 dispatchers = get(),
                 provider = get(),
-                errorProvider = get()
+                onboardingVisualizationProvider = get(),
+                errorProvider = get(),
             )
         }
     }
