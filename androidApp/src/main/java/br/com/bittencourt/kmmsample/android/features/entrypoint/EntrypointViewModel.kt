@@ -44,7 +44,7 @@ class EntrypointViewModel(
             if (isOnboardingSeen) {
                 R.id.homeFragment
             } else {
-                R.id.homeFragment // FIXME: 08/08/21 Onboarding 
+                R.id.onboardingFragment
             }.let { destinationId ->
                 navigate(destinationId, navOptions)
             }

@@ -6,11 +6,11 @@ import br.com.bittencourt.kmmsample.model.EntrypointScreen
 import br.com.bittencourt.kmmsample.model.common.Status
 import br.com.bittencourt.kmmsample.provider.EntrypointProvider
 import br.com.bittencourt.kmmsample.provider.ErrorProvider
-import br.com.bittencourt.kmmsample.provider.OnboardingProvider
+import br.com.bittencourt.kmmsample.provider.OnboardingVisualizationProvider
 
 class EntrypointInteractor(
     dispatchers: DispatcherProvider,
-    private val provider: OnboardingProvider,
+    private val provider: OnboardingVisualizationProvider,
     private val entrypointProvider: EntrypointProvider,
     private val errorProvider: ErrorProvider,
 ) : BaseInteractor<EntrypointScreen>(
