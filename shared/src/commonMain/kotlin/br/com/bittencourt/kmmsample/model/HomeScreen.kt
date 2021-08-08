@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class HomeScreen(
     override val status: Status = Status.Loading,
-    override val popUpMessage: String? = null,
+    override val popupMessage: String? = null,
     val screenTitle: String = "",
     val balanceButtonTitle: String = "",
     val transferButtonTitle: String = "",

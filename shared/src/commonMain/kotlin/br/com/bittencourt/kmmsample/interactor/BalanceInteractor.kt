@@ -24,7 +24,7 @@ class BalanceInteractor(
             updateState {
                 it.copy(
                     status = Status.Error,
-                    popUpMessage = errorProvider.getScreenError()
+                    popupMessage = errorProvider.getScreenError()
                 )
             }
         }

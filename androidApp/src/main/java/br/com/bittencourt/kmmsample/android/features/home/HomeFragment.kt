@@ -15,4 +15,8 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
     override fun onDataBound(binding: HomeFragmentBinding?) {
         binding?.viewModel = viewModel
     }
+
+    override fun showScreenPopupMessage() {
+        observeScreenPopupMessage(viewModel.screen)
+    }
 }

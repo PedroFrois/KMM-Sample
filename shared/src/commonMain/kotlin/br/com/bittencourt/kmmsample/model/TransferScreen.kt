@@ -8,7 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class TransferScreen(
     override val status: Status = Status.Loading,
-    override val popUpMessage: String? = null,
+    override val popupMessage: String? = null,
     val screenTitle: String = "",
     val receiverFieldLabel: String = "",
     val receiverFieldValue: String = "",

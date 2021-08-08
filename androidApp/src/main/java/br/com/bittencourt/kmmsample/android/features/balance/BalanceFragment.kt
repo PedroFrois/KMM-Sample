@@ -15,4 +15,8 @@ class BalanceFragment : BaseFragment<BalanceFragmentBinding>() {
     override fun onDataBound(binding: BalanceFragmentBinding?) {
         binding?.viewModel = viewModel
     }
+
+    override fun showScreenPopupMessage() {
+        observeScreenPopupMessage(viewModel.screen)
+    }
 }
