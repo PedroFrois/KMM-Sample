@@ -2,6 +2,7 @@ package br.com.bittencourt.kmmsample.provider.common
 
 import br.com.bittencourt.kmmsample.model.BalanceScreen
 import br.com.bittencourt.kmmsample.model.HomeScreen
+import br.com.bittencourt.kmmsample.model.OnboardingScreen
 import br.com.bittencourt.kmmsample.model.TransferScreen
 import br.com.bittencourt.kmmsample.model.common.BaseScreen
 import br.com.bittencourt.kmmsample.model.common.Button
@@ -78,6 +79,14 @@ private fun getBffJsonResponse(url: String) = when (EndpointsBFF.from(url)) {
             transferFieldValue = 0.0,
             transferButton = Button("Transferir")
         ).toJson<TransferScreen>()
+    }
+    EndpointsBFF.ONBOARDING -> {
+        OnboardingScreen(
+            screenTitle = "Onboarding",
+            onboardingMsg = "Esse aplicativo tem por função exemplificar a separação de camadas e estruturas proposta na monografia." +
+                " Além de também utilizar o Kotlin Multiplatform Mobile para separar a aplicação em módulos compartilhado e não compartilhado.",
+            closeButton = Button("Fechar onboarding")
+        ).toJson<OnboardingScreen>()
     }
     null -> throw error("Unhandled url: $url")
 }

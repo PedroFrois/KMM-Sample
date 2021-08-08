@@ -5,17 +5,16 @@ import androidx.navigation.NavController
 import br.com.bittencourt.kmmsample.android.features.balance.BalanceViewModel
 import br.com.bittencourt.kmmsample.android.features.entrypoint.EntrypointViewModel
 import br.com.bittencourt.kmmsample.android.features.home.HomeViewModel
+import br.com.bittencourt.kmmsample.android.features.onboarding.OnboardingViewModel
 import br.com.bittencourt.kmmsample.android.features.transfer.TransferViewModel
-import br.com.bittencourt.kmmsample.interactor.BalanceInteractor
-import br.com.bittencourt.kmmsample.interactor.EntrypointInteractor
-import br.com.bittencourt.kmmsample.interactor.HomeInteractor
-import br.com.bittencourt.kmmsample.interactor.TransferInteractor
+import br.com.bittencourt.kmmsample.interactor.*
 import br.com.bittencourt.kmmsample.interactor.common.DefaultDispatcherProvider
 import br.com.bittencourt.kmmsample.interactor.common.DispatcherProvider
 import br.com.bittencourt.kmmsample.provider.*
-import br.com.bittencourt.kmmsample.provider.local.OnboardingProviderLocal
+import br.com.bittencourt.kmmsample.provider.local.OnboardingVisualizationProviderLocal
 import br.com.bittencourt.kmmsample.provider.remote.BalanceProviderRemote
 import br.com.bittencourt.kmmsample.provider.remote.HomeProviderRemote
+import br.com.bittencourt.kmmsample.provider.remote.OnboardingProviderRemote
 import br.com.bittencourt.kmmsample.provider.remote.TransferProviderRemote
 import br.com.bittencourt.kmmsample.provider.synthetic.EntrypointProviderSynthetic
 import br.com.bittencourt.kmmsample.provider.synthetic.ErrorProviderSynthetic
@@ -40,10 +39,11 @@ class App : Application() {
 
     private val providersModule = module {
         factory<BalanceProvider> { BalanceProviderRemote() }
-        factory<ErrorProvider> { ErrorProviderSynthetic() }
         factory<EntrypointProvider> { EntrypointProviderSynthetic() }
+        factory<ErrorProvider> { ErrorProviderSynthetic() }
         factory<HomeProvider> { HomeProviderRemote() }
-        factory<OnboardingProvider> { OnboardingProviderLocal() }
+        factory<OnboardingProvider> { OnboardingProviderRemote() }
+        factory<OnboardingVisualizationProvider> { OnboardingVisualizationProviderLocal() }
         factory<TransferProvider> { TransferProviderRemote() }
     }
 
@@ -68,6 +68,12 @@ class App : Application() {
         }
         viewModel { (navController: NavController?) ->
             TransferViewModel(
+                interactor = get(),
+                navController = navController
+            )
+        }
+        viewModel { (navController: NavController?) ->
+            OnboardingViewModel(
                 interactor = get(),
                 navController = navController
             )
@@ -98,6 +104,13 @@ class App : Application() {
         }
         factory {
             TransferInteractor(
+                dispatchers = get(),
+                provider = get(),
+                errorProvider = get()
+            )
+        }
+        factory {
+            OnboardingInteractor(
                 dispatchers = get(),
                 provider = get(),
                 errorProvider = get()
