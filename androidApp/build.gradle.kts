@@ -23,6 +23,8 @@ val navigationVersion = findProperty("android.navigation") as String
 val koinVersion = findProperty("android.koin") as String
 // WorkManager
 val workVersion = findProperty("android.work") as String
+// Key-Value storage
+val multiSettingsVersion = findProperty("version.multiplatform.settings") as String
 
 dependencies {
     implementation(project(":shared"))
@@ -51,6 +53,9 @@ dependencies {
 
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:$workVersion")
+
+    // Key-Value storage
+    implementation("com.russhwolf:multiplatform-settings:$multiSettingsVersion")
 }
 
 android {
