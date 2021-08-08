@@ -1,4 +1,4 @@
-package br.com.bittencourt.kmmsample.provider.common
+package br.com.bittencourt.kmmsample.provider.common.clients
 
 import br.com.bittencourt.kmmsample.model.BalanceScreen
 import br.com.bittencourt.kmmsample.model.HomeScreen
@@ -6,6 +6,8 @@ import br.com.bittencourt.kmmsample.model.OnboardingScreen
 import br.com.bittencourt.kmmsample.model.TransferScreen
 import br.com.bittencourt.kmmsample.model.common.BaseScreen
 import br.com.bittencourt.kmmsample.model.common.Button
+import br.com.bittencourt.kmmsample.provider.common.Endpoints
+import br.com.bittencourt.kmmsample.provider.common.EndpointsBFF
 import io.github.aakira.napier.Napier
 import io.ktor.client.*
 import io.ktor.client.engine.mock.*
