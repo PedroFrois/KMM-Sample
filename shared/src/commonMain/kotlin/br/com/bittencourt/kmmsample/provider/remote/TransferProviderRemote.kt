@@ -15,7 +15,7 @@ class TransferProviderRemote : TransferProvider {
         return mockHttpClient().getJson(EndpointsBFF.TRANSFER.url)
     }
 
-    override suspend fun makeTransfer(value: Double, receiverId: String) {
+    override suspend fun makeTransfer(value: Double, receiverId: String): String {
         return mockHttpClient().postJson(
             url = Endpoints.TRANSFER_MAKE.url,
             body = MakeTransferRequest(value, receiverId)
