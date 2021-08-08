@@ -15,4 +15,8 @@ class EntrypointFragment : BaseFragment<EntrypointFragmentBinding>() {
     override fun onDataBound(binding: EntrypointFragmentBinding?) {
         binding?.viewmodel = viewModel
     }
+
+    override fun showScreenPopupMessage() {
+        observeScreenPopupMessage(viewModel.screen)
+    }
 }

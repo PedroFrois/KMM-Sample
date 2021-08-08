@@ -15,4 +15,8 @@ class TransferFragment : BaseFragment<TransferFragmentBinding>() {
     override fun onDataBound(binding: TransferFragmentBinding?) {
         binding?.viewModel = viewModel
     }
+
+    override fun showScreenPopupMessage() {
+        observeScreenPopupMessage(viewModel.screen)
+    }
 }

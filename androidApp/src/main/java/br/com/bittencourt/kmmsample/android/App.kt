@@ -17,6 +17,7 @@ import br.com.bittencourt.kmmsample.provider.local.OnboardingProviderLocal
 import br.com.bittencourt.kmmsample.provider.remote.BalanceProviderRemote
 import br.com.bittencourt.kmmsample.provider.remote.HomeProviderRemote
 import br.com.bittencourt.kmmsample.provider.remote.TransferProviderRemote
+import br.com.bittencourt.kmmsample.provider.synthetic.EntrypointProviderSynthetic
 import br.com.bittencourt.kmmsample.provider.synthetic.ErrorProviderSynthetic
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -40,6 +41,7 @@ class App : Application() {
     private val providersModule = module {
         factory<BalanceProvider> { BalanceProviderRemote() }
         factory<ErrorProvider> { ErrorProviderSynthetic() }
+        factory<EntrypointProvider> { EntrypointProviderSynthetic() }
         factory<HomeProvider> { HomeProviderRemote() }
         factory<OnboardingProvider> { OnboardingProviderLocal() }
         factory<TransferProvider> { TransferProviderRemote() }
@@ -84,6 +86,7 @@ class App : Application() {
             EntrypointInteractor(
                 dispatchers = get(),
                 provider = get(),
+                entrypointProvider = get(),
                 errorProvider = get()
             )
         }

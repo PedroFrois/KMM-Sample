@@ -24,7 +24,7 @@ class TransferInteractor(
             updateState {
                 it.copy(
                     status = Status.Error,
-                    popUpMessage = errorProvider.getScreenError()
+                    popupMessage = errorProvider.getScreenError()
                 )
             }
         }
@@ -37,14 +37,14 @@ class TransferInteractor(
             updateState {
                 it.copy(
                     transferButton = it.transferButton?.copy(status = Status.Success),
-                    popUpMessage = "Transferiu"
+                    popupMessage = "Transferência realizada com sucesso!"
                 )
             }
         } catch (e: Exception) {
             updateState {
                 it.copy(
                     transferButton = it.transferButton?.copy(status = Status.Loading),
-                    popUpMessage = errorProvider.getPostError()
+                    popupMessage = errorProvider.getPostError()
                 )
             }
         }

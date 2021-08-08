@@ -4,12 +4,14 @@ import br.com.bittencourt.kmmsample.interactor.common.BaseInteractor
 import br.com.bittencourt.kmmsample.interactor.common.DispatcherProvider
 import br.com.bittencourt.kmmsample.model.EntrypointScreen
 import br.com.bittencourt.kmmsample.model.common.Status
+import br.com.bittencourt.kmmsample.provider.EntrypointProvider
 import br.com.bittencourt.kmmsample.provider.ErrorProvider
 import br.com.bittencourt.kmmsample.provider.OnboardingProvider
 
 class EntrypointInteractor(
     dispatchers: DispatcherProvider,
     private val provider: OnboardingProvider,
+    private val entrypointProvider: EntrypointProvider,
     private val errorProvider: ErrorProvider,
 ) : BaseInteractor<EntrypointScreen>(
     dispatchers
@@ -24,6 +26,11 @@ class EntrypointInteractor(
             updateState {
                 it.copy(
                     status = Status.Success,
+                    popupMessage = if (isOnboardingSeen) {
+                        entrypointProvider.getOnboardingSeenMsg()
+                    } else {
+                        entrypointProvider.getOnboardingNotSeenMsg()
+                    },
                     isOnboardingSeen = isOnboardingSeen
                 )
             }
@@ -31,7 +38,7 @@ class EntrypointInteractor(
             updateState {
                 it.copy(
                     status = Status.Error,
-                    popUpMessage = errorProvider.getScreenError()
+                    popupMessage = errorProvider.getScreenError()
                 )
             }
         }

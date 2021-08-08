@@ -7,6 +7,6 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class EntrypointScreen(
     override val status: Status = Status.Loading,
-    override val popUpMessage: String? = null,
+    override val popupMessage: String? = null,
     val isOnboardingSeen: Boolean? = null,
 ) : BaseScreen
